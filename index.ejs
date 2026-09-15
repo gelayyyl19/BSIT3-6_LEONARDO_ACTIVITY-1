@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Management System</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Biodata Registration Form</h2>
+        
+        <form action="/register" method="POST">
+            <input type="text" name="fn" placeholder="Enter Full Name" required>
+            <input type="number" name="age" placeholder="Enter Age" required>
+            <input type="text" name="gender" placeholder="Enter Gender" required>
+            <input type="date" name="birth_date" required>
+            <input type="text" name="address" placeholder="Enter Address" required>
+            <input type="text" name="contact" placeholder="Enter Contact Number" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="text" name="civil_status" placeholder="Enter Civil Status" required>
+            <input type="text" name="education" placeholder="Enter Education Level" required>
+            <input type="text" name="citizenship" placeholder="Enter Citizenship" required>
+            
+            <button type="submit">Register Biodata</button>
+        </form>
+
+        <h2>Registered Records</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Civil Status</th>
+                    <th>Education</th>
+                    <th>Citizenship</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (typeof data !== 'undefined' && data && data.length > 0) { %>
+                    <% data.forEach(row => { %>
+                        <tr>
+                            <td><%= row.id %></td>
+                            <td><%= row.full_name %></td>
+                            <td><%= row.age %></td>
+                            <td><%= row.gender %></td>
+                            <td><%= new Date(row.birth_date).toISOString().split('T')[0] %></td>
+                            <td><%= row.address %></td>
+                            <td><%= row.contact_number %></td>
+                            <td><%= row.email %></td>
+                            <td><%= row.civil_status %></td>
+                            <td><%= row.education_level %></td>
+                            <td><%= row.citizenship %></td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="11" style="text-align: center;">No records found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
